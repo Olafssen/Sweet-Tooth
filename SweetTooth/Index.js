@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const candyService = require('./services/candyService');
-
+const offerService = require('./services/offerService');
 //------------------------------------------------------
 
 
@@ -41,5 +41,11 @@ app.get('/api/candies/:id', function(req, res){
 
 //GET all offers
 app.get('/api/offers', function(req, res){
-    candyService
+    console.log("1");
+    offerService.getAllOffers(function(offers){
+        console.log("HALLO BABTY")
+        return res.status(200).json(offers);
+    }, function(err){
+        return res.status(404).json(err);
+    });
 });
