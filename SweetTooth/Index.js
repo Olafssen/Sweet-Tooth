@@ -4,6 +4,7 @@ const app = express();
 
 const candyService = require('./services/candyService');
 const offerService = require('./services/offerService');
+const pinataService = require('./services/pinataService');
 //------------------------------------------------------
 
 
@@ -47,5 +48,24 @@ app.get('/api/offers', function(req, res){
         return res.status(200).json(offers);
     }, function(err){
         return res.status(404).json(err);
+    });
+});
+// -------------------- Pinata -------------------
+
+// GET all pinata
+app.get('/api/pinatas', function(req, res){
+    pinataService.getAllPinatas(function(pinatas){
+        return res.status(200).json(pinatas);
+    }, function(err){
+        return res.status(404).json(err);
+    });
+});
+//POST - Create new pinata
+app.post('/api/pinatas', function(req, res){
+    const bodyForPinata = req.body;
+    pinataService.createNewPinata(bodyForPinata, function(newPinata){
+        return res.status(201).json(newPinata);
+    },function(err){
+        return res.status(400).json(err);
     });
 });

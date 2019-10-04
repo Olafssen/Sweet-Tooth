@@ -16,7 +16,7 @@ const candyService = () => {
                 
             //});
             console.log("2");
-            const baby = Offer.map(o => ({ ...o, candies: o.candies.map(c1 => Candy.find(c2 => c2.id === c1)) }))
+            const baby = Offer.map(o => ({ ...o, candies: o.candies.map(c1 => Candy.find(c2 => c2.id === c1)) }));
 
             console.log(baby);
             return baby;
